@@ -1,20 +1,20 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Incidencia {
 
 	private int id;
 	private String titulo;
 	private String descripcion;
-	private LocalDate fechaCreacion;
-	private Estado estado;
-	private Tecnico tecnico;
+	private Date fechaCreacion;
+	private int estado;
+	private int tecnico;
 
 	public Incidencia() {
 	}
 
-	public Incidencia(String titulo, String descripcion, LocalDate fechaCreacion, Estado estado, Tecnico tecnico) {
+	public Incidencia(String titulo, String descripcion, Date fechaCreacion, int estado, int tecnico) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaCreacion = fechaCreacion;
@@ -22,8 +22,7 @@ public class Incidencia {
 		this.tecnico = tecnico;
 	}
 
-	public Incidencia(int id, String titulo, String descripcion, LocalDate fechaCreacion, Estado estado,
-			Tecnico tecnico) {
+	public Incidencia(int id, String titulo, String descripcion, Date fechaCreacion, int estado, int tecnico) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
@@ -56,27 +55,27 @@ public class Incidencia {
 		this.descripcion = descripcion;
 	}
 
-	public LocalDate getFechaCreacion() {
+	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(LocalDate fechaCreacion) {
+	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Estado getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 
-	public Tecnico getTecnico() {
+	public int getTecnico() {
 		return tecnico;
 	}
 
-	public void setTecnico(Tecnico tecnico) {
+	public void setTecnico(int tecnico) {
 		this.tecnico = tecnico;
 	}
 

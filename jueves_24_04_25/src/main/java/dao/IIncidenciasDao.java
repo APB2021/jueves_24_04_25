@@ -6,7 +6,7 @@ import modelo.Incidencia;
 
 public interface IIncidenciasDao {
 
-	boolean crear(Incidencia i);
+	boolean crear(Incidencia incidencia);
 
 	List<Incidencia> listarTodas();
 
