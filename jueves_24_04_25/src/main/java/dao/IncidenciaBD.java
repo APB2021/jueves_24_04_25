@@ -30,7 +30,7 @@ public class IncidenciaBD implements IncidenciaDAO {
 
 			ps.setString(1, incidencia.getTitulo());
 			ps.setString(2, incidencia.getDescripcion());
-			ps.setDate(3, (java.sql.Date) incidencia.getFechaCreacion());
+			ps.setDate(3, incidencia.getFechaCreacion());
 			ps.setInt(4, incidencia.getEstado());
 			ps.setInt(5, incidencia.getTecnico());
 
@@ -191,9 +191,56 @@ public class IncidenciaBD implements IncidenciaDAO {
 	}
 
 	@Override
-	public List buscarPorEstado(String estado) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Incidencia> buscarPorEstado(String estado) {
+
+		List<Incidencia> incidencias = new ArrayList<>();
+
+		PreparedStatement ps;
+		ResultSet rs;
+		Connection con = null;
+
+		try {
+			con = PoolConexiones.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		var sql = "SELECT id, titulo, descripcion, fechaCreacion, estado, tecnico FROM incidencias WHERE estado = ?";
+
+		try {
+
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				var incidencia = new Incidencia();
+
+				ps.setInt(1, incidencia.getEstado());
+
+				incidencia.setId(rs.getInt("id"));
+				incidencia.setTitulo(rs.getString("titulo"));
+				incidencia.setDescripcion(rs.getString("descripcion"));
+				incidencia.setFechaCreacion(rs.getDate("fechaCreacion"));
+				incidencia.setEstado(rs.getInt("estado"));
+				incidencia.setTecnico(rs.getInt("tecnico"));
+
+				incidencias.add(incidencia);
+			}
+		} catch (SQLException e) {
+			System.out.println("Error al listar incidencias: " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar conexión: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
+		return incidencias;
 	}
 
 	@Override

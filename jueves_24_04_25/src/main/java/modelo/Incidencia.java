@@ -1,6 +1,7 @@
 package modelo;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Incidencia {
 

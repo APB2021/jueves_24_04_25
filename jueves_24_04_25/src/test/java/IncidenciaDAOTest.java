@@ -1,6 +1,10 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+
+import dao.IncidenciaDAO;
+import modelo.Incidencia;
+
 import java.util.*;
 import java.time.LocalDate;
 import java.util.concurrent.*;
@@ -16,7 +20,7 @@ public class IncidenciaDAOTest {
 
 	@Test
 	public void testCrearYBuscar() {
-		Incidencia i = new Incidencia(0, "Pantalla azul", "Error grave", LocalDate.now(), "Abierta", "Juan",
+		Incidencia i = new Incidencia(1, "Pantalla azul", "Error grave", LocalDate.now(), "Abierta", "Juan",
 				"juan@ejemplo.com");
 		assertTrue(dao.crear(i));
 		Incidencia recuperada = dao.buscarPorId(i.getId());
@@ -26,7 +30,7 @@ public class IncidenciaDAOTest {
 
 	@Test
 	public void testActualizarEstado() {
-		Incidencia i = new Incidencia(0, "Problema de red", "No hay conexión", LocalDate.now(), "Abierta", "Ana",
+		Incidencia i = new Incidencia(2, "Problema de red", "No hay conexión", LocalDate.now(), "Abierta", "Ana",
 				"ana@ejemplo.com");
 		dao.crear(i);
 		assertTrue(dao.actualizarEstado(i.getId(), "En progreso"));
@@ -42,7 +46,7 @@ public class IncidenciaDAOTest {
 
 	@Test
 	public void testEliminarPorId() {
-		Incidencia i = new Incidencia(0, "Eliminar esto", "Solo para test", LocalDate.now(), "Abierta", "Luis",
+		Incidencia i = new Incidencia(3, "Eliminar esto", "Solo para test", LocalDate.now(), "Abierta", "Luis",
 				"luis@ejemplo.com");
 		dao.crear(i);
 		assertTrue(dao.eliminarPorId(i.getId()));
@@ -51,13 +55,13 @@ public class IncidenciaDAOTest {
 
 	@Test
 	public void testInsertarInvalido() {
-		Incidencia invalida = new Incidencia(0, null, null, LocalDate.now(), null, null, null);
+		Incidencia invalida = new Incidencia(4, null, null, LocalDate.now(), null, null, null);
 		assertFalse(dao.crear(invalida), "No debería permitir insertar incidencias inválidas.");
 	}
 
 	@Test
 	public void testBuscarConFecha() {
-		Incidencia i = new Incidencia(0, "Con fecha", "Test fecha", LocalDate.of(2024, 1, 1), "Abierta", "Mario",
+		Incidencia i = new Incidencia(5, "Con fecha", "Test fecha", LocalDate.of(2024, 1, 1), "Abierta", "Mario",
 				"mario@ejemplo.com");
 		dao.crear(i);
 		Incidencia r = dao.buscarPorId(i.getId());
@@ -71,7 +75,7 @@ public class IncidenciaDAOTest {
 		for (int i = 0; i < 10; i++) {
 			int finalI = i;
 			tareas.add(() -> {
-				Incidencia i1 = new Incidencia(0, "Concurrencia " + finalI, "Test", LocalDate.now(), "Abierta",
+				Incidencia i1 = new Incidencia(6, "Concurrencia " + finalI, "Test", LocalDate.now(), "Abierta",
 						"Técnico", "t@t.com");
 				return dao.crear(i1);
 			});
