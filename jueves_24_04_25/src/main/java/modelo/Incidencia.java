@@ -9,6 +9,7 @@ public class Incidencia {
 	private String titulo;
 	private String descripcion;
 	private Date fechaCreacion;
+	private LocalDate fechaCreacion2;
 	private int estado;
 	private int tecnico;
 
@@ -28,6 +29,23 @@ public class Incidencia {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fechaCreacion = fechaCreacion;
+		this.estado = estado;
+		this.tecnico = tecnico;
+	}
+
+	public Incidencia(int id, String titulo, String descripcion, int estado, int tecnico) {
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.tecnico = tecnico;
+	}
+
+	public Incidencia(int id, String titulo, String descripcion, LocalDate fechaCreacion2, int estado, int tecnico) {
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaCreacion2 = fechaCreacion2;
 		this.estado = estado;
 		this.tecnico = tecnico;
 	}
@@ -78,6 +96,14 @@ public class Incidencia {
 
 	public void setTecnico(int tecnico) {
 		this.tecnico = tecnico;
+	}
+
+	public LocalDate getFechaCreacion2() {
+		return fechaCreacion2;
+	}
+
+	public void setFechaCreacion2(LocalDate fechaCreacion2) {
+		this.fechaCreacion2 = fechaCreacion2;
 	}
 
 	@Override
